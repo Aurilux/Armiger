@@ -1,10 +1,10 @@
 {
-  "homepage": "https://github.com/Aurilux/Titles",
+  "homepage": "https://github.com/Aurilux/Armiger",
   "promos": {
-    "1.12.2-latest": "2.0.0",
-    "1.12.2-recommended": "2.0.0"
+    "1.12.2-latest": "1.0.0",
+    "1.12.2-recommended": "1.0.0"
   },
   "1.12.2": {
-    "2.0.0": "BIG Minecraft version jump. New GUI."
+    "1.0.0": "Initial release"
   }
 }
