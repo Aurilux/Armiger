@@ -1,0 +1,22 @@
+# Configuration
+
+# Achievements
+
+# Items
+# item.item_name.name=Item Name
+
+# Blocks
+# tile.ore_prysmal.name=Prysmal Geode
+
+# Entities
+
+# Tile Entities
+# tile.te_name.name=TE Name
+
+# Potions
+
+# Container
+# container.container_name=Container Name
+
+# Misc
+# itemGroup.modid=Mod Name
