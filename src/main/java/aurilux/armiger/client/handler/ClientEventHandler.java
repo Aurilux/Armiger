@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = Armiger.MOD_ID)
-public class ClientHandler {
+public class ClientEventHandler {
     @SubscribeEvent
     public static void onKeyInput(InputEvent.KeyInputEvent event) {
         if (FMLClientHandler.instance().getClient().inGameHasFocus && ClientProxy.OPEN_ARMIGER_GUI.isPressed()) {

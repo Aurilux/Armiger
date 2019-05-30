@@ -1,0 +1,18 @@
+[{
+	"modid": "armiger",
+	"name": "Armiger",
+	"description": "Gives you slots of three more armor sets which you can switch to through the gui. These sets persist even across death",
+	"version": "${version}",
+	"mcversion": "${mcversion}",
+	"url": "",
+	"updateUrl": "",
+	"authorList": [ "Aurilux" ],
+	"credits": "Created by Aurilux",
+    "logoFile": "assets/armiger/textures/Armiger_logo.png",
+    "screenshots": [],
+    "parent": "",
+    "requiredMods": [],
+    "dependencies": [],
+    "dependants": [],
+    "useDependencyInformation": true
+}]

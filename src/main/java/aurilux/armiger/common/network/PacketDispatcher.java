@@ -1,12 +1,12 @@
-package aurilux.titles.common.network;
+package aurilux.armiger.common.network;
 
-import aurilux.titles.common.Titles;
+import aurilux.armiger.common.Armiger;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class PacketDispatcher {
-    public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Titles.MOD_ID);
+    public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Armiger.MOD_ID);
     private static int discriminator = 0;
 
     private static void registerMessage(Class packet, Side side) {

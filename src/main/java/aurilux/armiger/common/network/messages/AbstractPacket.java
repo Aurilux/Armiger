@@ -1,4 +1,4 @@
-package aurilux.titles.common.network.messages;
+package aurilux.armiger.common.network.messages;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,8 +11,8 @@ import net.minecraftforge.fml.relauncher.Side;
 public abstract class AbstractPacket<REQ extends IMessage> implements IMessage, IMessageHandler<REQ, REQ> {
     @Override
     public REQ onMessage(REQ message, MessageContext ctx) {
+        // Use anon - lambda causes classloading issues
         Minecraft.getMinecraft().addScheduledTask(new Runnable() {
-            // Use anon - lambda causes classloading issues
             @Override
             public void run() {
                 if (ctx.side == Side.SERVER) {

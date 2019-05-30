@@ -1,12 +1,12 @@
 # Configuration
 
-# Achievements
+# Advancements
 
 # Items
 # item.item_name.name=Item Name
 
 # Blocks
-# tile.ore_prysmal.name=Prysmal Geode
+# tile.block_name.name=Block Name
 
 # Entities
 
@@ -20,3 +20,5 @@
 
 # Misc
 # itemGroup.modid=Mod Name
+keybind.armiger.category=Armiger
+keybind.armiger.openArmigerGui=Open Armiger Gui

@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber(modid = Armiger.MOD_ID)
-public class CommonHandler {
+public class CommonEventHandler {
     @SubscribeEvent
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof EntityPlayer) {
@@ -21,16 +21,9 @@ public class CommonHandler {
 
     @SubscribeEvent
     public static void onPlayerClone(PlayerEvent.Clone event) {
-        if (event.isWasDeath()) {
-            //Get armiger from the old player...
-            EntityPlayer player = event.getOriginal();
-            ArmigerImpl.DefaultImpl inventory = ArmigerImpl.getCapability(player);
-            NBTTagCompound data = inventory.serializeNBT();
-
-            //..and give it to the new clone player
-            player = event.getEntityPlayer();
-            inventory = ArmigerImpl.getCapability(player);
-            inventory.deserializeNBT(data);
-        }
+        //Get data from the old player...
+        NBTTagCompound data = ArmigerImpl.getCapability(event.getOriginal()).serializeNBT();
+        //..and give it to the new clone player
+        ArmigerImpl.getCapability(event.getEntityPlayer()).deserializeNBT(data);
     }
 }
