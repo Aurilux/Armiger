@@ -1,6 +1,8 @@
 package aurilux.armiger.client.gui;
 
 import aurilux.armiger.client.ClientProxy;
+import aurilux.armiger.common.Armiger;
+import aurilux.armiger.common.capability.ArmigerImpl;
 import aurilux.armiger.common.container.ContainerArmiger;
 import aurilux.armiger.common.network.PacketDispatcher;
 import aurilux.armiger.common.network.messages.PacketSyncArmorSlots;
@@ -21,13 +23,16 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class GuiArmiger extends GuiContainer {
-    private final ResourceLocation bgTexture = new ResourceLocation("armiger", "textures/gui/armiger_gui.png");
+    private final ResourceLocation bgTexture = new ResourceLocation(Armiger.MOD_ID, "textures/gui/armiger_gui.png");
 
     private EntityPlayer player;
+    private ArmigerImpl.DefaultImpl armiger;
+    private int unlockedSets;
 
-    public GuiArmiger(EntityPlayer player) {
-        super(new ContainerArmiger(player));
-        this.player = player;
+    public GuiArmiger(EntityPlayer player, ArmigerImpl.DefaultImpl impl) {
+        super(new ContainerArmiger(player, impl));
+        this.armiger = impl;
+        unlockedSets = armiger.getUnlockedSets() + 1;
     }
 
     @Override
@@ -42,7 +47,14 @@ public class GuiArmiger extends GuiContainer {
 
         this.buttonList.clear();
         for (int i = 0; i < 3; i++) {
-            this.buttonList.add(new GuiButtonImage(i, this.guiLeft - (24 + (i * 21)), this.guiTop + 80, 20, 18, 0, 167, 19, bgTexture));
+            GuiButton button;
+            if (i < unlockedSets) {
+                button = new GuiButtonImage(i, this.guiLeft - (24 + (i * 21)), this.guiTop + 80, 20, 18, 0, 167, 19, bgTexture);
+            }
+            else {
+                button = new GuiButton(i, this.guiLeft - (24 + (i * 21)), this.guiTop + 40, 20, 18, "blah");
+            }
+            this.buttonList.add(button);
         }
 
         this.renderHoveredToolTip(mouseX, mouseY);

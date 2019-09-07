@@ -1,6 +1,7 @@
 package aurilux.armiger.common.container;
 
 
+import aurilux.armiger.common.Armiger;
 import aurilux.armiger.common.capability.ArmigerImpl;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,15 +19,14 @@ public class ContainerArmiger extends ContainerPlayer {
     private EntityPlayer player;
     private ArmigerImpl.DefaultImpl armiger;
 
-    public ContainerArmiger(EntityPlayer player) {
+    public ContainerArmiger(EntityPlayer player, ArmigerImpl.DefaultImpl impl) {
         super(player.inventory, player.world.isRemote, player);
-
         this.player = player;
-        armiger = ArmigerImpl.getCapability(player);
+        this.armiger = impl;
 
         //armiger armor slots
         int index = 0;
-        for (int i = 0; i < 3; i++) { //three columns
+        for (int i = 0; i < armiger.getUnlockedSets() + 1; i++) { //three columns
             for (int j = 0; j < 4; j++) { //four slots
                 EntityEquipmentSlot slot = equipmentSlots[j];
                 this.addSlotToContainer(new ArmorSlot(armiger, index, -(22 + (i * 21)), 8 + (j * 18), slot));

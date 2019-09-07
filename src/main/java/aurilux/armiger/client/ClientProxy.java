@@ -2,6 +2,7 @@ package aurilux.armiger.client;
 
 import aurilux.armiger.client.gui.GuiArmiger;
 import aurilux.armiger.common.CommonProxy;
+import aurilux.armiger.common.capability.ArmigerImpl;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -20,7 +21,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         switch (ID) {
-            case ARMIGER_GUI : return new GuiArmiger(player);
+            case ARMIGER_GUI :
+                ArmigerImpl.DefaultImpl armiger = ArmigerImpl.getCapability(player);
+                return new GuiArmiger(player, armiger);
         }
         return null;
     }

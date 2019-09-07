@@ -30,7 +30,8 @@ public class ArmigerImpl {
     }
 
     public interface IArmiger {
-        //empty, for now...
+        int getUnlockedSets();
+        void unlockSlots(int set);
     }
 
     private static class Storage implements Capability.IStorage<IArmiger> {
@@ -48,9 +49,22 @@ public class ArmigerImpl {
 
     public static class DefaultImpl extends ItemStackHandler implements IArmiger {
         private static final int ARMIGER_SLOTS = 12;
+        private int unlockedSlots = 0;
 
         public DefaultImpl() {
             super(ARMIGER_SLOTS);
+        }
+
+        public int getUnlockedSets() {
+            return unlockedSlots;
+        }
+
+        public void unlockSlots(int set) {
+            if (set > 2 && set < 0) {
+                return;
+            }
+
+            unlockedSlots = set;
         }
     }
 
