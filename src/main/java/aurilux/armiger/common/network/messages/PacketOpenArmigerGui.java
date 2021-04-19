@@ -1,29 +1,36 @@
 package aurilux.armiger.common.network.messages;
 
-import aurilux.armiger.common.Armiger;
-import aurilux.armiger.common.CommonProxy;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayer;
+import aurilux.armiger.api.ArmigerAPI;
+import aurilux.armiger.common.container.ArmigerContainerProvider;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.fml.network.NetworkHooks;
 
-public class PacketOpenArmigerGui extends AbstractPacket<PacketOpenArmigerGui> {
-    @Override
-    public void handleClientSide(PacketOpenArmigerGui message, EntityPlayer player) {
+import java.util.function.Supplier;
 
+public class PacketOpenArmigerGui {
+    public static PacketOpenArmigerGui decode(PacketBuffer buf) {
+        return new PacketOpenArmigerGui();
     }
 
-    @Override
-    public void handleServerSide(PacketOpenArmigerGui message, EntityPlayer player) {
-        player.openContainer.onContainerClosed(player);
-        player.openGui(Armiger.MOD_ID, CommonProxy.ARMIGER_GUI, player.world, 0, 0, 0);
+    public static void encode(PacketOpenArmigerGui msg, PacketBuffer buf) {
     }
 
-    @Override
-    public void fromBytes(ByteBuf buf) {
-
-    }
-
-    @Override
-    public void toBytes(ByteBuf buf) {
-
+    public static void handle(PacketOpenArmigerGui msg, Supplier<NetworkEvent.Context> ctx) {
+        ctx.get().enqueueWork(new Runnable() {
+            // Have to use anon class instead of lambda or else we'll get classloading issues
+            @Override
+            public void run() {
+                ServerPlayerEntity player = ctx.get().getSender();
+                if (player != null) {
+                    ArmigerAPI.getCapability(player).ifPresent(c ->
+                            NetworkHooks.openGui(player, new ArmigerContainerProvider())
+                    );
+                }
+            }
+        });
+        ctx.get().setPacketHandled(true);
     }
 }
