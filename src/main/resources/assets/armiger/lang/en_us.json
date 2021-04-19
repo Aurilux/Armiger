@@ -1,0 +1,14 @@
+{
+  "_Commands": "",
+  "commands.armiger.reset": "Your number of unlocked slots has been reset to 1",
+
+  "_Config": "",
+  "keybind.armiger.category": "Armiger",
+  "keybind.armiger.openArmigerGui": "Open Armiger Gui",
+
+  "_Advancements": "",
+  "_Items": "",
+  "_Blocks": "",
+  "_Entities": "",
+  "_Tiles": ""
+}

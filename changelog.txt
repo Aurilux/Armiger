@@ -1,0 +1,8 @@
+## 1.16.5 - 1.1.0
+- Updated to 1.16.5.
+- Players start off with one unlocked armiger set by default. The other two can be unlocked with experience levels.
+- There is a config option for the experience level cost to unlock armiger sets. Setting it to 0 means players have all sets unlocked by default.
+- There is now an API for this mod so you can access the armiger.
+
+## 1.12.2 - 1.0.0
+- Initial release
